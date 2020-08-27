@@ -17,20 +17,14 @@ public class ServiceManager
         
         if !Reachability.isConnectedToNetwork()
         {
-            DispatchQueue.main.async
-            {
-                completion(.failure(.noInternetError))
-            }
+            completion(.failure(.noInternetError))
             return
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error as NSError?, error.domain == NSURLErrorDomain
             {
-                DispatchQueue.main.async
-                {
-                        completion(.failure(.domainError))
-                }
+                completion(.failure(.domainError))
                 return
             }
             else
@@ -41,18 +35,12 @@ public class ServiceManager
                     {
                         let result = try JSONDecoder().decode(ErrorResponse.self, from: data)
                         let error  = NetworkError.badAllErrorResponse(code: response.httpStatusCode, description: result.message, errorCode: result.errorCode, errorMessage: result.errorMessage, errorReason: result.errorReason)
-                        DispatchQueue.main.async
-                        {
-                                completion(.failure(error))
-                        }
+                        completion(.failure(error))
                         return
                     }
                     catch
                     {
-                        DispatchQueue.main.async
-                        {
-                                completion(.failure(.decodingError))
-                        }
+                        completion(.failure(.decodingError))
                         return
                     }
                 }
@@ -62,17 +50,11 @@ public class ServiceManager
                     do
                     {
                         let result = try JSONDecoder().decode(T.self, from: data)
-                        DispatchQueue.main.async
-                        {
-                                completion(.success(result))
-                        }
+                        completion(.success(result))
                     }
                     catch
                     {
-                        DispatchQueue.main.async
-                        {
-                                completion(.failure(.decodingError))
-                        }
+                        completion(.failure(.decodingError))
                     }
                 }
             }

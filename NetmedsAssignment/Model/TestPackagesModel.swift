@@ -12,19 +12,20 @@ typealias TestPackagesModel = [TestPackagesModelElement]
 
 // MARK: - TestPackagesModelElement
 struct TestPackagesModelElement: Codable {
-    let sNo: Int
-    let itemID, itemName: String
+    let sNo: Int?
+    let itemID, itemName: String?
     let type: String?
-    let keyword: String
+    let keyword: String?
     let bestSellers: String?
-    let testCount: Int
-    let includedTests, url: String
-    let minPrice: Int
+    let testCount: Int?
+    let includedTests, url: String?
+    let minPrice: Int?
     let labName: String?
-    let fasting, availableAt: Int
-    let popular: String
+    let fasting, availableAt: Int?
+    let popular: String?
     let category: String?
-    let objectID: String
+    let objectID: String?
+    var isAlreadyInCart: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case sNo             = "S.no"

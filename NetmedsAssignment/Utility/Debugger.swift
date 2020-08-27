@@ -8,14 +8,20 @@
 
 import Foundation
 
-open class Debugger {
-
-    static func printDictionary(dictionary: [String: Any]?) {
-        do {
+open class Debugger
+{
+    static func printDictionary(dictionary: [String: Any]?)
+    {
+        do
+        {
             guard let dict = dictionary else {return}
             let data = try JSONSerialization.data(withJSONObject: dict, options: JSONSerialization.WritingOptions.prettyPrinted)
             if let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue) { debugPrint(json) }
-        } catch { debugPrint("JSON string could not be printed") }
+        }
+        catch
+        {
+            debugPrint("JSON string could not be printed")
+        }
     }
 }
 

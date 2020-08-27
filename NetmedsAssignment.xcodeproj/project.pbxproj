@@ -24,6 +24,11 @@
 		9380E59E24F7756A00295C49 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E59D24F7756A00295C49 /* Debugger.swift */; };
 		9380E5A024F7850400295C49 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E59F24F7850400295C49 /* URLConstants.swift */; };
 		9380E5A324F7A6BC00295C49 /* TestPackageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5A224F7A6BC00295C49 /* TestPackageViewModel.swift */; };
+		9380E5A824F7C51400295C49 /* TestPackageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5A724F7C51400295C49 /* TestPackageTableViewCell.swift */; };
+		9380E5AB24F7C65E00295C49 /* ReusableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5AA24F7C65E00295C49 /* ReusableViewRepresentable.swift */; };
+		9380E5AF24F7C73300295C49 /* UITableViewExtension+Representable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5AE24F7C73300295C49 /* UITableViewExtension+Representable.swift */; };
+		9380E5B324F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5B224F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift */; };
+		9380E5B524F7F8C100295C49 /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5B424F7F8C100295C49 /* LoadingSpinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		9380E59D24F7756A00295C49 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
 		9380E59F24F7850400295C49 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		9380E5A224F7A6BC00295C49 /* TestPackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPackageViewModel.swift; sourceTree = "<group>"; };
+		9380E5A724F7C51400295C49 /* TestPackageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPackageTableViewCell.swift; sourceTree = "<group>"; };
+		9380E5AA24F7C65E00295C49 /* ReusableViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewRepresentable.swift; sourceTree = "<group>"; };
+		9380E5AE24F7C73300295C49 /* UITableViewExtension+Representable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewExtension+Representable.swift"; sourceTree = "<group>"; };
+		9380E5B224F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPackageTableViewCellRepresentable.swift; sourceTree = "<group>"; };
+		9380E5B424F7F8C100295C49 /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +95,7 @@
 				9380E59A24F7720600295C49 /* Model */,
 				9380E5A124F7A38800295C49 /* View Model */,
 				9380E5A424F7ADF200295C49 /* View Controllers */,
+				9380E5A624F7C4E000295C49 /* Views */,
 				9380E57624F75B6E00295C49 /* Main.storyboard */,
 				9380E57924F75B7000295C49 /* Assets.xcassets */,
 				9380E57B24F75B7000295C49 /* LaunchScreen.storyboard */,
@@ -108,8 +119,10 @@
 		9380E58924F75E8C00295C49 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				9380E5A924F7C63200295C49 /* Reusable Views Utility */,
 				9380E58A24F75EAA00295C49 /* Reachability.swift */,
 				9380E59D24F7756A00295C49 /* Debugger.swift */,
+				9380E5B424F7F8C100295C49 /* LoadingSpinner.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -127,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				9380E59B24F7722800295C49 /* TestPackagesModel.swift */,
+				9380E5B124F7DB4800295C49 /* Protocols */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -154,6 +168,31 @@
 				9380E57224F75B6E00295C49 /* SceneDelegate.swift */,
 			);
 			path = "Application Delegates";
+			sourceTree = "<group>";
+		};
+		9380E5A624F7C4E000295C49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9380E5A724F7C51400295C49 /* TestPackageTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9380E5A924F7C63200295C49 /* Reusable Views Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9380E5AA24F7C65E00295C49 /* ReusableViewRepresentable.swift */,
+				9380E5AE24F7C73300295C49 /* UITableViewExtension+Representable.swift */,
+			);
+			path = "Reusable Views Utility";
+			sourceTree = "<group>";
+		};
+		9380E5B124F7DB4800295C49 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9380E5B224F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +270,7 @@
 				9380E57524F75B6E00295C49 /* TestPackageViewController.swift in Sources */,
 				9380E58824F75E4800295C49 /* URLResponse+Status.swift in Sources */,
 				9380E58B24F75EAA00295C49 /* Reachability.swift in Sources */,
+				9380E5AB24F7C65E00295C49 /* ReusableViewRepresentable.swift in Sources */,
 				9380E58D24F7669F00295C49 /* ServiceManager.swift in Sources */,
 				9380E59C24F7722800295C49 /* TestPackagesModel.swift in Sources */,
 				9380E5A024F7850400295C49 /* URLConstants.swift in Sources */,
@@ -238,9 +278,13 @@
 				9380E59524F76E7D00295C49 /* ServiceManager+APIRequestPerformer.swift in Sources */,
 				9380E58F24F769ED00295C49 /* NetworkRequestBuilder.swift in Sources */,
 				9380E57124F75B6E00295C49 /* AppDelegate.swift in Sources */,
+				9380E5B524F7F8C100295C49 /* LoadingSpinner.swift in Sources */,
 				9380E57324F75B6E00295C49 /* SceneDelegate.swift in Sources */,
 				9380E59824F7715E00295C49 /* APIRequestManager.swift in Sources */,
+				9380E5AF24F7C73300295C49 /* UITableViewExtension+Representable.swift in Sources */,
 				9380E5A324F7A6BC00295C49 /* TestPackageViewModel.swift in Sources */,
+				9380E5A824F7C51400295C49 /* TestPackageTableViewCell.swift in Sources */,
+				9380E5B324F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
