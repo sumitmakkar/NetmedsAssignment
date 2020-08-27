@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestPackageTableViewCell" id="MQV-eh-vCM" customClass="TestPackageTableViewCell" customModule="NetmedsAssignment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TestPackageTableViewCell" id="MQV-eh-vCM" customClass="TestPackageTableViewCell" customModule="NetmedsAssignment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MQV-eh-vCM" id="y2o-9w-ezv">
@@ -77,6 +77,7 @@
                                             <constraint firstItem="rWh-1u-PSb" firstAttribute="leading" secondItem="MQV-eh-vCM" secondAttribute="leading" constant="16" id="e26-FA-9vk"/>
                                             <constraint firstAttribute="trailing" secondItem="rWh-1u-PSb" secondAttribute="trailing" constant="16" id="p4G-fM-xYP"/>
                                         </constraints>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="addRemoveCartButton" destination="jqo-cK-Cyc" id="5O2-ty-aVj"/>
                                             <outlet property="amountLabel" destination="J7m-rq-RVt" id="RWi-bZ-O64"/>

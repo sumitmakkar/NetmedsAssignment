@@ -26,23 +26,24 @@ struct TestPackagesModelElement: Codable {
     let category: String?
     let objectID: String?
     var isAlreadyInCart: Bool = false
+    var actualIndex: Int      = -1      // This variable holds the actual position of element in the array of model
 
     enum CodingKeys: String, CodingKey {
-        case sNo             = "S.no"
-        case itemID          = "itemId"
-        case itemName        = "itemName"
-        case type            = "type"
-        case keyword         = "Keyword"
-        case bestSellers     = "Best-sellers"
-        case testCount       = "testCount"
-        case includedTests   = "Included Tests"
-        case url             = "url"
-        case minPrice        = "minPrice"
-        case labName         = "labName"
-        case fasting         = "fasting"
-        case availableAt     = "availableAt"
-        case popular         = "popular"
-        case category        = "category"
-        case objectID        = "objectID"
+        case sNo           = "S.no"
+        case itemID        = "itemId"
+        case itemName      = "itemName"
+        case type          = "type"
+        case keyword       = "Keyword"
+        case bestSellers   = "Best-sellers"
+        case testCount     = "testCount"
+        case includedTests = "Included Tests"
+        case url           = "url"
+        case minPrice      = "minPrice"
+        case labName       = "labName"
+        case fasting       = "fasting"
+        case availableAt   = "availableAt"
+        case popular       = "popular"
+        case category      = "category"
+        case objectID      = "objectID"
     }
 }

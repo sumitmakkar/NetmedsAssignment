@@ -47,6 +47,7 @@ public class ServiceManager
                 
                 if let data = data
                 {
+                    Debugger.printArrayDictionary(arrayDictionary: data.arrayDictionary)
                     do
                     {
                         let result = try JSONDecoder().decode(T.self, from: data)

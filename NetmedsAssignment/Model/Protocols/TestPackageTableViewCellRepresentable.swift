@@ -6,7 +6,7 @@
 //  Copyright © 2020 Sumit Makkar. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol TestPackageTableViewCellRepresentable
 {
@@ -14,4 +14,6 @@ protocol TestPackageTableViewCellRepresentable
     func getLabName(at indexPath: IndexPath) -> String
     func getTestPackageAmount(at indexPath: IndexPath) -> String
     func addOrRemoveTestPackageFromCart(at indexPath: IndexPath)
+    func getCartButtonText(at indexPath: IndexPath) -> String
+    func getCartButtonTextColor(at indexPath: IndexPath) -> UIColor
 }

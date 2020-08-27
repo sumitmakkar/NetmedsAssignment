@@ -15,6 +15,7 @@ class TestPackageViewController: UIViewController
     
     // MARK: - Properties
     private lazy var testPackageViewModel: TestPackageViewModel = { return TestPackageViewModel() }()
+    private let      searchController                           = UISearchController(searchResultsController: nil)
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad()
@@ -34,13 +35,20 @@ class TestPackageViewController: UIViewController
     {
         title = "Netmeds"
         fetchDataAndUpdateScreen()
+        searchController.searchResultsUpdater                 = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder                = "Search"
+        navigationItem.searchController                       = searchController
+        definesPresentationContext                            = true
+        searchController.searchBar.delegate                   = self
     }
     
     //Adding Table View
     private func setUpTestPackageDataTableView()
     {
-        testPackageDataTableView.tableFooterView = UIView() //This will avoid extra separators of UITableView
-        testPackageDataTableView.dataSource      = self
+        testPackageDataTableView.keyboardDismissMode = .onDrag
+        testPackageDataTableView.tableFooterView     = UIView() //This will avoid extra separators of UITableView
+        testPackageDataTableView.dataSource          = self
     }
     
     private func reloadTestPackageDataTableview()
@@ -86,5 +94,26 @@ extension TestPackageViewController: UITableViewDataSource
         let cell: TestPackageTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         cell.setUpCell(with: testPackageViewModel, at: indexPath)
         return cell
+    }
+}
+
+// MARK: - SearchBar Result Updating
+extension TestPackageViewController: UISearchResultsUpdating
+{
+    func updateSearchResults(for searchController: UISearchController)
+    {
+        testPackageViewModel.filterTestPackagesData(with: searchController.searchBar.text ?? "") { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.reloadTestPackageDataTableview()
+        }
+    }
+}
+
+// MARK: - Searchbar delegate
+extension TestPackageViewController: UISearchBarDelegate
+{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        
     }
 }
