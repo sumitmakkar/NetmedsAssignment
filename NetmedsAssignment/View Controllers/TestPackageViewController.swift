@@ -20,7 +20,43 @@ class TestPackageViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        setupUI()
+        setupScreen()
+    }
+    
+    override func loadView()
+    {
+        super.loadView()
+        setUpTestPackageDataTableView()
+    }
+    
+    // MARK: - UI Methods
+    private func setupScreen()
+    {
+        title = "Netmeds"
+        fetchDataAndUpdateScreen()
+    }
+    
+    //Adding Table View
+    private func setUpTestPackageDataTableView()
+    {
+        testPackageDataTableView.tableFooterView = UIView() //This will avoid extra separators of UITableView
+        testPackageDataTableView.dataSource      = self
+    }
+    
+    private func reloadTestPackageDataTableview()
+    {
+        DispatchQueue.main.async
+        { [weak self] in
+            guard let strongSelf = self else { return }
+            UIView.transition(with: strongSelf.testPackageDataTableView, duration: 0.30, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+                strongSelf.testPackageDataTableView.reloadData()
+            })
+        }
+    }
+    
+    // MARK: - Fetching Data
+    private func fetchDataAndUpdateScreen()
+    {
         startLoading()
         testPackageViewModel.fetchTestPackageData { [weak self] (networkError) in
             guard let strongSelf = self else { return }
@@ -31,33 +67,9 @@ class TestPackageViewController: UIViewController
             }
             else
             {
-                DispatchQueue.main.async
-                {
-                    UIView.transition(with: strongSelf.testPackageDataTableView, duration: 0.30, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
-                        strongSelf.testPackageDataTableView.reloadData()
-                    })
-                }
+                strongSelf.reloadTestPackageDataTableview()
             }
         }
-    }
-    
-    override func loadView()
-    {
-        super.loadView()
-        setUpTestPackageDataTableView()
-    }
-    
-    // MARK: - UI Methods
-    private func setupUI()
-    {
-        
-    }
-    
-    //Adding Table View
-    private func setUpTestPackageDataTableView()
-    {
-        testPackageDataTableView.tableFooterView = UIView() //This will avoid extra separators of UITableView
-        testPackageDataTableView.dataSource      = self
     }
 }
 
