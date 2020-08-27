@@ -23,6 +23,7 @@
 		9380E59C24F7722800295C49 /* TestPackagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E59B24F7722800295C49 /* TestPackagesModel.swift */; };
 		9380E59E24F7756A00295C49 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E59D24F7756A00295C49 /* Debugger.swift */; };
 		9380E5A024F7850400295C49 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E59F24F7850400295C49 /* URLConstants.swift */; };
+		9380E5A324F7A6BC00295C49 /* TestPackageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E5A224F7A6BC00295C49 /* TestPackageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		9380E59B24F7722800295C49 /* TestPackagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPackagesModel.swift; sourceTree = "<group>"; };
 		9380E59D24F7756A00295C49 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
 		9380E59F24F7850400295C49 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		9380E5A224F7A6BC00295C49 /* TestPackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPackageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				9380E58424F75D6900295C49 /* Network Service Manager */,
 				9380E59624F7714600295C49 /* Service Manager */,
 				9380E59A24F7720600295C49 /* Model */,
+				9380E5A124F7A38800295C49 /* View Model */,
 				9380E57024F75B6E00295C49 /* AppDelegate.swift */,
 				9380E57224F75B6E00295C49 /* SceneDelegate.swift */,
 				9380E57424F75B6E00295C49 /* ViewController.swift */,
@@ -127,6 +130,14 @@
 				9380E59B24F7722800295C49 /* TestPackagesModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9380E5A124F7A38800295C49 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				9380E5A224F7A6BC00295C49 /* TestPackageViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 				9380E57124F75B6E00295C49 /* AppDelegate.swift in Sources */,
 				9380E57324F75B6E00295C49 /* SceneDelegate.swift in Sources */,
 				9380E59824F7715E00295C49 /* APIRequestManager.swift in Sources */,
+				9380E5A324F7A6BC00295C49 /* TestPackageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
