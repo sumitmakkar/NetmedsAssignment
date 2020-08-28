@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		936D8C0124F8B6B60066E5C2 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D8C0024F8B6B60066E5C2 /* DBHelper.swift */; };
 		9380E57124F75B6E00295C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E57024F75B6E00295C49 /* AppDelegate.swift */; };
 		9380E57324F75B6E00295C49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E57224F75B6E00295C49 /* SceneDelegate.swift */; };
 		9380E57524F75B6E00295C49 /* TestPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E57424F75B6E00295C49 /* TestPackageViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		936D8C0024F8B6B60066E5C2 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		9380E56D24F75B6E00295C49 /* NetmedsAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetmedsAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9380E57024F75B6E00295C49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9380E57224F75B6E00295C49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		936D8BFF24F8B69F0066E5C2 /* DB Helper */ = {
+			isa = PBXGroup;
+			children = (
+				936D8C0024F8B6B60066E5C2 /* DBHelper.swift */,
+			);
+			path = "DB Helper";
+			sourceTree = "<group>";
+		};
 		9380E56424F75B6E00295C49 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +129,7 @@
 		9380E58924F75E8C00295C49 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				936D8BFF24F8B69F0066E5C2 /* DB Helper */,
 				9380E5A924F7C63200295C49 /* Reusable Views Utility */,
 				9380E58A24F75EAA00295C49 /* Reachability.swift */,
 				9380E59D24F7756A00295C49 /* Debugger.swift */,
@@ -273,6 +284,7 @@
 				9380E5AB24F7C65E00295C49 /* ReusableViewRepresentable.swift in Sources */,
 				9380E58D24F7669F00295C49 /* ServiceManager.swift in Sources */,
 				9380E59C24F7722800295C49 /* TestPackagesModel.swift in Sources */,
+				936D8C0124F8B6B60066E5C2 /* DBHelper.swift in Sources */,
 				9380E5A024F7850400295C49 /* URLConstants.swift in Sources */,
 				9380E59E24F7756A00295C49 /* Debugger.swift in Sources */,
 				9380E59524F76E7D00295C49 /* ServiceManager+APIRequestPerformer.swift in Sources */,
