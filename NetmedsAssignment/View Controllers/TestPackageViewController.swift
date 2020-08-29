@@ -12,10 +12,20 @@ class TestPackageViewController: UIViewController
 {
     // MARK: - IBOutlets
     @IBOutlet weak var testPackageDataTableView: UITableView!
+    @IBOutlet weak var cartButton: UIButton!
     
     // MARK: - Properties
-    private lazy var testPackageViewModel: TestPackageViewModel = { return TestPackageViewModel() }()
-    private let      searchController                           = UISearchController(searchResultsController: nil)
+    private let      searchController = UISearchController(searchResultsController: nil)
+    private lazy var testPackageViewModel: TestPackageViewModel =
+    {
+        return TestPackageViewModel { [weak self] (isCartButtonHidden) in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async
+            {
+                strongSelf.cartButton.isHidden = isCartButtonHidden
+            }
+        }
+    }()
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad()
@@ -78,6 +88,13 @@ class TestPackageViewController: UIViewController
                 strongSelf.reloadTestPackageDataTableview()
             }
         }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func cartButtonTapAction(_ sender: UIButton)
+    {
+        
     }
 }
 

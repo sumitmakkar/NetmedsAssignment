@@ -87,10 +87,30 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button hidden="YES" opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIh-FE-9rs">
+                                <rect key="frame" x="177" y="795.5" width="60" height="58.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="auc-ez-OIg"/>
+                                    <constraint firstAttribute="width" constant="60" id="nMh-2a-RVZ"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="cart.fill" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cCornerRadius">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cartButtonTapAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O5c-Pd-PS7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="4S6-J2-fGx" secondAttribute="bottom" id="4Wz-3F-E9G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wIh-FE-9rs" secondAttribute="bottom" constant="8" id="He3-KG-HhI"/>
+                            <constraint firstItem="wIh-FE-9rs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OlL-x3-TTc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4S6-J2-fGx" secondAttribute="trailing" id="S9F-kU-3h7"/>
                             <constraint firstItem="4S6-J2-fGx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dW3-0v-z00"/>
                             <constraint firstItem="4S6-J2-fGx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wlu-1N-Rjz"/>
@@ -99,6 +119,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kgY-lX-8G8"/>
                     <connections>
+                        <outlet property="cartButton" destination="wIh-FE-9rs" id="Zv1-zM-Phy"/>
                         <outlet property="testPackageDataTableView" destination="4S6-J2-fGx" id="csn-i7-SKU"/>
                     </connections>
                 </viewController>
@@ -125,4 +146,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="103.79464285714285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
+    </resources>
 </document>

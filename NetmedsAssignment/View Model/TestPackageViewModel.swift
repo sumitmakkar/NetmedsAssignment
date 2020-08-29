@@ -14,7 +14,14 @@ class TestPackageViewModel
     private var filteredTestPackagesDataModel: TestPackagesModel?
     private let testPackagesTableName        : String = "testPackages"
     private var databaseHelper               : DBHelper?
+    private var cartButtonStatusClosure      : ((Bool) -> Void)?
     private var cartArray                    : TestPackagesModel?
+    {
+        didSet
+        {
+            cartButtonStatusClosure?(cartArray?.count == 0)
+        }
+    }
     
     private var testPackagesTableCreationQuery: String
     {
@@ -28,10 +35,12 @@ class TestPackageViewModel
     }
     
     // MARK: - Initializer
-    init()
+    init(with cartButtonClosure: ((Bool) -> Void)?)
     {
-        databaseHelper = DBHelper(with: testPackagesTableCreationQuery)
-        cartArray      = databaseHelper?.readTestPackagesFromTable(tableName: testPackagesTableName)
+        cartButtonStatusClosure = cartButtonClosure
+        databaseHelper          = DBHelper(with: testPackagesTableCreationQuery)
+        cartArray               = databaseHelper?.readTestPackagesFromTable(tableName: testPackagesTableName)
+        cartButtonStatusClosure?(cartArray?.count == 0)
     }
     
     //updateActualIndexesOfTestPackageData() will redude the complexity of finding element in testPackagesDataModel to O(1)
