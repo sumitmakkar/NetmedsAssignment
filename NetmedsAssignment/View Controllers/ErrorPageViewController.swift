@@ -16,6 +16,7 @@ class ErrorPageViewController: UIViewController
     private let paddingBetweenComponents: CGFloat = 10
     var         errorDescriptionString  : String?
     var         retryClosure            : (() -> Void)?
+    var         viewCartClosure         : (() -> Void)?
     
     private lazy var componentsWeightage: [CGFloat] = {
         let divisionFactor: CGFloat = 7
@@ -185,7 +186,8 @@ class ErrorPageViewController: UIViewController
     
     @objc private func viewCartButtonSelector(_ sender: UIButton)
     {
-        
+        dismiss(animated: true)
+        viewCartClosure?()
     }
     
     @objc private func cancelButtonSelector(_ sender: UIButton)

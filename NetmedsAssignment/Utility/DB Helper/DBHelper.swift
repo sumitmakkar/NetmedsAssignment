@@ -142,9 +142,9 @@ class DBHelper
         return testPackagesModel
     }
     
-    func deleteTestPackageFromTable(tableName: String, where whereQueryClause: String)
+    func deleteTestPackageFromTable(tableName: String, where whereQueryClause: String? = nil)
     {
-        let query                     = DatabaseCRUDOperation.delete.rawValue + tableName + whereQueryClause
+        let query                     = DatabaseCRUDOperation.delete.rawValue + tableName + (whereQueryClause ?? "")
         var statement: OpaquePointer? = nil
         if sqlite3_prepare_v2(netmedsDatabase, query, -1, &statement, nil) == SQLITE_OK
         {

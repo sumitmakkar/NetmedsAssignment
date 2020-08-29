@@ -15,6 +15,7 @@ class TestPackageViewController: UIViewController
     @IBOutlet weak var cartButton: UIButton!
     
     // MARK: - Properties
+    private var      isFetchRequired                            = true
     private let      searchController                           = UISearchController(searchResultsController: nil)
     private lazy var testPackageViewModel: TestPackageViewModel =
                                                                   {
@@ -40,11 +41,22 @@ class TestPackageViewController: UIViewController
         setUpTestPackageDataTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        if isFetchRequired
+        {
+            isFetchRequired = false
+            testPackageViewModel.updateCartArray()
+            fetchDataAndUpdateScreen()
+        }
+    }
+    
     // MARK: - UI Methods
     private func setupScreen()
     {
         title                                                 = "Netmeds"
-        fetchDataAndUpdateScreen()
+//        fetchDataAndUpdateScreen()
         searchController.searchResultsUpdater                 = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder                = "Search"
@@ -78,19 +90,23 @@ class TestPackageViewController: UIViewController
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.startLoading()
+            strongSelf.view.isUserInteractionEnabled = false
         }
         testPackageViewModel.fetchTestPackageData { [weak self] (networkError) in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.stopLoading()
+                strongSelf.view.isUserInteractionEnabled = true
             }
             if let networkErr = networkError
             {
+                strongSelf.isFetchRequired = true
                 debugPrint(networkErr.localizedDescription)
                 strongSelf.navigateToErrorScreen(with: networkErr.localizedDescription)
             }
             else
             {
+                strongSelf.isFetchRequired = false
                 strongSelf.reloadTestPackageDataTableview()
             }
         }
@@ -99,7 +115,7 @@ class TestPackageViewController: UIViewController
     // MARK: - IBActions
     @IBAction func cartButtonTapAction(_ sender: UIButton)
     {
-        
+        navigateToCartViewController()
     }
     
     // MARK: - Navigation Methods
@@ -111,7 +127,24 @@ class TestPackageViewController: UIViewController
                                                 guard let strongSelf = self else { return }
                                                 strongSelf.fetchDataAndUpdateScreen()
                                              }
-        present(errorPageVC, animated: true)
+        errorPageVC.viewCartClosure        = { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.navigateToCartViewController()
+        }
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.present(errorPageVC, animated: true)
+        }
+    }
+    
+    private func navigateToCartViewController()
+    {
+        let cartVC = CartViewController.instantiate()
+        cartVC.testPackagesFetchRequiredClosure = { [weak self] fetchStatus in
+            guard let strongSelf = self else { return }
+            strongSelf.isFetchRequired = fetchStatus
+        }
+        navigationController?.pushViewController(cartVC, animated: true)
     }
 }
 

@@ -39,10 +39,11 @@ class TestPackageViewModel
     {
         cartButtonStatusClosure = cartButtonClosure
         databaseHelper          = DBHelper(with: testPackagesTableCreationQuery)
-        cartArray               = databaseHelper?.readTestPackagesFromTable(tableName: testPackagesTableName)
+        updateCartArray()
         cartButtonStatusClosure?(cartArray?.count == 0)
     }
     
+    // MARK: - API Methods
     //updateActualIndexesOfTestPackageData() will redude the complexity of finding element in testPackagesDataModel to O(1)
     private func updateActualIndexesOfTestPackageData()
     {
@@ -218,6 +219,11 @@ class TestPackageViewModel
             filteredTestPackagesDataModel = testPackagesDataModel
         }
         completionHandler?()
+    }
+    
+    func updateCartArray()
+    {
+        cartArray = databaseHelper?.readTestPackagesFromTable(tableName: testPackagesTableName)
     }
 }
 

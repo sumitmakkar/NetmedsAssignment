@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		935D51DA24FA449600AF13DF /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51D924FA449600AF13DF /* Storyboardable.swift */; };
 		935D51DC24FA453200AF13DF /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51DB24FA453200AF13DF /* ErrorPageViewController.swift */; };
+		935D51DE24FA88CA00AF13DF /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51DD24FA88CA00AF13DF /* CartViewController.swift */; };
+		935D51E224FA92CF00AF13DF /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51E124FA92CF00AF13DF /* CartViewModel.swift */; };
+		935D51E424FA935400AF13DF /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51E324FA935400AF13DF /* CartTableViewCell.swift */; };
+		935D51E624FAA8F700AF13DF /* CartTableViewCellRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51E524FAA8F700AF13DF /* CartTableViewCellRepresentable.swift */; };
 		936D8C0124F8B6B60066E5C2 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936D8C0024F8B6B60066E5C2 /* DBHelper.swift */; };
 		9380E57124F75B6E00295C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E57024F75B6E00295C49 /* AppDelegate.swift */; };
 		9380E57324F75B6E00295C49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380E57224F75B6E00295C49 /* SceneDelegate.swift */; };
@@ -37,6 +41,10 @@
 /* Begin PBXFileReference section */
 		935D51D924FA449600AF13DF /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		935D51DB24FA453200AF13DF /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
+		935D51DD24FA88CA00AF13DF /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		935D51E124FA92CF00AF13DF /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		935D51E324FA935400AF13DF /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
+		935D51E524FAA8F700AF13DF /* CartTableViewCellRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCellRepresentable.swift; sourceTree = "<group>"; };
 		936D8C0024F8B6B60066E5C2 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		9380E56D24F75B6E00295C49 /* NetmedsAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetmedsAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9380E57024F75B6E00295C49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9380E5A224F7A6BC00295C49 /* TestPackageViewModel.swift */,
+				935D51E124FA92CF00AF13DF /* CartViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -173,6 +182,7 @@
 			children = (
 				9380E57424F75B6E00295C49 /* TestPackageViewController.swift */,
 				935D51DB24FA453200AF13DF /* ErrorPageViewController.swift */,
+				935D51DD24FA88CA00AF13DF /* CartViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -190,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				9380E5A724F7C51400295C49 /* TestPackageTableViewCell.swift */,
+				935D51E324FA935400AF13DF /* CartTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				9380E5B224F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift */,
+				935D51E524FAA8F700AF13DF /* CartTableViewCellRepresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -295,9 +307,13 @@
 				9380E59E24F7756A00295C49 /* Debugger.swift in Sources */,
 				9380E59524F76E7D00295C49 /* ServiceManager+APIRequestPerformer.swift in Sources */,
 				9380E58F24F769ED00295C49 /* NetworkRequestBuilder.swift in Sources */,
+				935D51E224FA92CF00AF13DF /* CartViewModel.swift in Sources */,
 				9380E57124F75B6E00295C49 /* AppDelegate.swift in Sources */,
 				9380E5B524F7F8C100295C49 /* LoadingSpinner.swift in Sources */,
+				935D51DE24FA88CA00AF13DF /* CartViewController.swift in Sources */,
+				935D51E624FAA8F700AF13DF /* CartTableViewCellRepresentable.swift in Sources */,
 				9380E57324F75B6E00295C49 /* SceneDelegate.swift in Sources */,
+				935D51E424FA935400AF13DF /* CartTableViewCell.swift in Sources */,
 				9380E59824F7715E00295C49 /* APIRequestManager.swift in Sources */,
 				935D51DC24FA453200AF13DF /* ErrorPageViewController.swift in Sources */,
 				935D51DA24FA449600AF13DF /* Storyboardable.swift in Sources */,

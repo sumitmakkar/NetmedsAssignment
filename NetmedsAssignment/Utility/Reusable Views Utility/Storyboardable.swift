@@ -23,7 +23,7 @@ extension Storyboardable where Self: UIViewController
         let viewControllerStoryboardName = String(describing: self)
         switch viewControllerStoryboardName
         {
-            case "ErrorPageViewController":
+            case "ErrorPageViewController", "CartViewController":
                 return "Main"
             default:
                 return ""

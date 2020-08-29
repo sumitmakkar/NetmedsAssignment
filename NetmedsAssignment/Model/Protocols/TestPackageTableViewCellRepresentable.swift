@@ -8,11 +8,8 @@
 
 import UIKit
 
-protocol TestPackageTableViewCellRepresentable
+protocol TestPackageTableViewCellRepresentable: CartTableViewCellRepresentable
 {
-    func getTestPackageName(at indexPath: IndexPath) -> String
-    func getLabName(at indexPath: IndexPath) -> String
-    func getTestPackageAmount(at indexPath: IndexPath) -> String
     func addOrRemoveTestPackageFromCart(at indexPath: IndexPath)
     func getCartButtonText(at indexPath: IndexPath) -> String
     func getCartButtonTextColor(at indexPath: IndexPath) -> UIColor
