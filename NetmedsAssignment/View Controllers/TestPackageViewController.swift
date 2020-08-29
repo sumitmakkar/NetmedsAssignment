@@ -75,13 +75,19 @@ class TestPackageViewController: UIViewController
     // MARK: - Fetching Data
     private func fetchDataAndUpdateScreen()
     {
-        startLoading()
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.startLoading()
+        }
         testPackageViewModel.fetchTestPackageData { [weak self] (networkError) in
             guard let strongSelf = self else { return }
-            strongSelf.stopLoading()
+            DispatchQueue.main.async {
+                strongSelf.stopLoading()
+            }
             if let networkErr = networkError
             {
                 debugPrint(networkErr.localizedDescription)
+                strongSelf.navigateToErrorScreen(with: networkErr.localizedDescription)
             }
             else
             {
@@ -91,10 +97,21 @@ class TestPackageViewController: UIViewController
     }
     
     // MARK: - IBActions
-    
     @IBAction func cartButtonTapAction(_ sender: UIButton)
     {
         
+    }
+    
+    // MARK: - Navigation Methods
+    private func navigateToErrorScreen(with errorMessage: String)
+    {
+        let errorPageVC                    = ErrorPageViewController.instantiate()
+        errorPageVC.errorDescriptionString = errorMessage
+        errorPageVC.retryClosure           = { [weak self] in
+                                                guard let strongSelf = self else { return }
+                                                strongSelf.fetchDataAndUpdateScreen()
+                                             }
+        present(errorPageVC, animated: true)
     }
 }
 
