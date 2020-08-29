@@ -31,7 +31,7 @@ class TestPackageViewModel
     init()
     {
         databaseHelper = DBHelper(with: testPackagesTableCreationQuery)
-        databaseHelper?.readTestPackagesFromTable(tableName: testPackagesTableName)
+        cartArray      = databaseHelper?.readTestPackagesFromTable(tableName: testPackagesTableName)
     }
     
     //updateActualIndexesOfTestPackageData() will redude the complexity of finding element in testPackagesDataModel to O(1)
@@ -45,6 +45,20 @@ class TestPackageViewModel
         }
     }
     
+    //Updating test packages with already selected in cart
+    private func updateAlreadyInCardStatusOfTestPackagesData()
+    {
+        guard let cartArrayUnwrapped = cartArray, let testPackagesDataModelUnwrapped = testPackagesDataModel else { return }
+        for cartElement in cartArrayUnwrapped
+        {
+            for (index, testPackage) in testPackagesDataModelUnwrapped.enumerated() where testPackage.sNo == cartElement.sNo
+            {
+                testPackagesDataModel?[index].isAlreadyInCart         = true
+                filteredTestPackagesDataModel?[index].isAlreadyInCart = true
+            }
+        }
+    }
+    
     private func isTestPackageAlreadyInCart(at indexPath: IndexPath) -> Bool
     {
         guard let dataModel = filteredTestPackagesDataModel, indexPath.row < dataModel.count else { return false }
@@ -53,32 +67,44 @@ class TestPackageViewModel
     
     private func insertOrRemoveTestPackageFromDatabase(at indexPath: IndexPath)
     {
-        guard let dataModel = filteredTestPackagesDataModel, indexPath.row < dataModel.count else { return }
+        guard var dataModel = filteredTestPackagesDataModel, indexPath.row < dataModel.count else { return }
         if !dataModel[indexPath.row].isAlreadyInCart
         {
             databaseHelper?.insertIntoTable(tableName: testPackagesTableName, fromDictionary: prepareDictionaryForDatabaseInsertion(from: dataModel[indexPath.row]))
+            dataModel[indexPath.row].isAlreadyInCart = true     //Changing isAlreadyInCart property to true. It is although not required
+            cartArray?.append(dataModel[indexPath.row])         //Adding in cartArray as well
+        }
+        else
+        {
+            guard let sNo = dataModel[indexPath.row].sNo else { return }
+            databaseHelper?.deleteTestPackageFromTable(tableName: testPackagesTableName, where: " where sNo = \(sNo)")
+            //Deleting from cartArray as well
+            if let indexOfElementInCart = cartArray?.firstIndex(where: { $0.sNo == sNo })
+            {
+                cartArray?.remove(at: indexOfElementInCart)
+            }
         }
     }
     
     private func prepareDictionaryForDatabaseInsertion(from testPackage: TestPackagesModelElement) -> [String: Any]
     {
-        var dbInsertionDictionary = [String: Any]()
-        dbInsertionDictionary["sNo"] = testPackage.sNo ?? -1
-        dbInsertionDictionary["itemID"] = testPackage.itemID ?? ""
-        dbInsertionDictionary["itemName"] = testPackage.itemName ?? ""
-        dbInsertionDictionary["type"] = testPackage.type ?? ""
-        dbInsertionDictionary["keyword"] = testPackage.keyword ?? ""
-        dbInsertionDictionary["bestSellers"] = testPackage.bestSellers ?? ""
-        dbInsertionDictionary["testCount"] = testPackage.testCount ?? -1
+        var dbInsertionDictionary              = [String: Any]()
+        dbInsertionDictionary["sNo"]           = testPackage.sNo ?? -1
+        dbInsertionDictionary["itemID"]        = testPackage.itemID ?? ""
+        dbInsertionDictionary["itemName"]      = testPackage.itemName ?? ""
+        dbInsertionDictionary["type"]          = testPackage.type ?? ""
+        dbInsertionDictionary["keyword"]       = testPackage.keyword ?? ""
+        dbInsertionDictionary["bestSellers"]   = testPackage.bestSellers ?? ""
+        dbInsertionDictionary["testCount"]     = testPackage.testCount ?? -1
         dbInsertionDictionary["includedTests"] = testPackage.includedTests ?? ""
-        dbInsertionDictionary["url"] = testPackage.url ?? ""
-        dbInsertionDictionary["minPrice"] = testPackage.minPrice ?? -1
-        dbInsertionDictionary["labName"] = testPackage.labName ?? ""
-        dbInsertionDictionary["fasting"] = testPackage.fasting ?? -1
-        dbInsertionDictionary["availableAt"] = testPackage.availableAt ?? -1
-        dbInsertionDictionary["popular"] = testPackage.popular ?? ""
-        dbInsertionDictionary["category"] = testPackage.category ?? ""
-        dbInsertionDictionary["objectID"] = testPackage.objectID ?? ""
+        dbInsertionDictionary["url"]           = testPackage.url ?? ""
+        dbInsertionDictionary["minPrice"]      = testPackage.minPrice ?? -1
+        dbInsertionDictionary["labName"]       = testPackage.labName ?? ""
+        dbInsertionDictionary["fasting"]       = testPackage.fasting ?? -1
+        dbInsertionDictionary["availableAt"]   = testPackage.availableAt ?? -1
+        dbInsertionDictionary["popular"]       = testPackage.popular ?? ""
+        dbInsertionDictionary["category"]      = testPackage.category ?? ""
+        dbInsertionDictionary["objectID"]      = testPackage.objectID ?? ""
 
         if let serialNo = testPackage.sNo
         {
@@ -162,6 +188,7 @@ class TestPackageViewModel
                     strongSelf.testPackagesDataModel         = testPackagesModel
                     strongSelf.filteredTestPackagesDataModel = testPackagesModel
                     strongSelf.updateActualIndexesOfTestPackageData()
+                    strongSelf.updateAlreadyInCardStatusOfTestPackagesData()
                     completionHandler?(nil)
                 case .failure(let error):
                     strongSelf.testPackagesDataModel         = nil

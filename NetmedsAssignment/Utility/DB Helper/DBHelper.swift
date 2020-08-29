@@ -13,6 +13,7 @@ enum DatabaseCRUDOperation: String
 {
     case insertion = "INSERT INTO "
     case read      = "SELECT * FROM "
+    case delete    = "DELETE FROM "
 }
 
 class DBHelper
@@ -140,7 +141,24 @@ class DBHelper
         }
         return testPackagesModel
     }
-        
+    
+    func deleteTestPackageFromTable(tableName: String, where whereQueryClause: String)
+    {
+        let query                     = DatabaseCRUDOperation.delete.rawValue + tableName + whereQueryClause
+        var statement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(netmedsDatabase, query, -1, &statement, nil) == SQLITE_OK
+        {
+            if sqlite3_step(statement) == SQLITE_DONE
+            {
+                print("Data delete success")
+            }
+            else
+            {
+                print("Data is not deleted in table")
+            }
+        }
+    }
+    
     // MARK: - Prvate Methods
     private func createQuery(for operation: DatabaseCRUDOperation, with attributesAndValuesDictionary: [String: Any], in tableName: String) -> String
     {
