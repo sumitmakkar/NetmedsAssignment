@@ -15,17 +15,17 @@ class TestPackageViewController: UIViewController
     @IBOutlet weak var cartButton: UIButton!
     
     // MARK: - Properties
-    private let      searchController = UISearchController(searchResultsController: nil)
+    private let      searchController                           = UISearchController(searchResultsController: nil)
     private lazy var testPackageViewModel: TestPackageViewModel =
-    {
-        return TestPackageViewModel { [weak self] (isCartButtonHidden) in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async
-            {
-                strongSelf.cartButton.isHidden = isCartButtonHidden
-            }
-        }
-    }()
+                                                                  {
+                                                                      return TestPackageViewModel { [weak self] (isCartButtonHidden) in
+                                                                          guard let strongSelf = self else { return }
+                                                                          DispatchQueue.main.async
+                                                                          {
+                                                                              strongSelf.cartButton.isHidden = isCartButtonHidden
+                                                                          }
+                                                                      }
+                                                                  }()
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad()
@@ -43,7 +43,7 @@ class TestPackageViewController: UIViewController
     // MARK: - UI Methods
     private func setupScreen()
     {
-        title = "Netmeds"
+        title                                                 = "Netmeds"
         fetchDataAndUpdateScreen()
         searchController.searchResultsUpdater                 = self
         searchController.obscuresBackgroundDuringPresentation = false
