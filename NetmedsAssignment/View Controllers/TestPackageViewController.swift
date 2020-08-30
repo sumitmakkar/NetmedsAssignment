@@ -57,7 +57,6 @@ class TestPackageViewController: UIViewController
     private func setupScreen()
     {
         title                                                 = "Netmeds"
-//        fetchDataAndUpdateScreen()
         searchController.searchResultsUpdater                 = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder                = "Search"
