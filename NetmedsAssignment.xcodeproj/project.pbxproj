@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931D133C24FB5B36000E2190 /* PurchaseCompletionOrEmptyCartViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D133B24FB5B36000E2190 /* PurchaseCompletionOrEmptyCartViewPresenter.swift */; };
 		935D51DA24FA449600AF13DF /* Storyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51D924FA449600AF13DF /* Storyboardable.swift */; };
 		935D51DC24FA453200AF13DF /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51DB24FA453200AF13DF /* ErrorPageViewController.swift */; };
 		935D51DE24FA88CA00AF13DF /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D51DD24FA88CA00AF13DF /* CartViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		931D133B24FB5B36000E2190 /* PurchaseCompletionOrEmptyCartViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCompletionOrEmptyCartViewPresenter.swift; sourceTree = "<group>"; };
 		935D51D924FA449600AF13DF /* Storyboardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboardable.swift; sourceTree = "<group>"; };
 		935D51DB24FA453200AF13DF /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		935D51DD24FA88CA00AF13DF /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				9380E5B224F7DB6F00295C49 /* TestPackageTableViewCellRepresentable.swift */,
 				935D51E524FAA8F700AF13DF /* CartTableViewCellRepresentable.swift */,
+				931D133B24FB5B36000E2190 /* PurchaseCompletionOrEmptyCartViewPresenter.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				9380E57124F75B6E00295C49 /* AppDelegate.swift in Sources */,
 				9380E5B524F7F8C100295C49 /* LoadingSpinner.swift in Sources */,
 				935D51DE24FA88CA00AF13DF /* CartViewController.swift in Sources */,
+				931D133C24FB5B36000E2190 /* PurchaseCompletionOrEmptyCartViewPresenter.swift in Sources */,
 				935D51E624FAA8F700AF13DF /* CartTableViewCellRepresentable.swift in Sources */,
 				9380E57324F75B6E00295C49 /* SceneDelegate.swift in Sources */,
 				935D51E424FA935400AF13DF /* CartTableViewCell.swift in Sources */,

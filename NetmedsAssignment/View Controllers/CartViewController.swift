@@ -48,6 +48,7 @@ class CartViewController: UIViewController
         cartTableView.reloadSections([0], with: UITableView.RowAnimation.automatic)
         updateTotalAmountLabel()
         testPackagesFetchRequiredClosure?(true)
+        createCartHandlingViewWith(header: cartViewModel.getCartHeaderOn(cartState: CartStateEnum.orderCompletion), and: cartViewModel.getCartDescriptionOn(cartState: CartStateEnum.orderCompletion), withSelector: #selector(goToButtoonSelector))
     }
 }
 
@@ -64,11 +65,15 @@ extension CartViewController: UITableViewDataSource
         cell.setUpCell(cellModel: cartViewModel, at: indexPath)
         cell.cartTableViewReloadClosure = { [weak self] (index) in
             guard let strongSelf = self else { return }
-            strongSelf.cartViewModel.removeElementFromCart(at: index)
+            let isCartEmpty = strongSelf.cartViewModel.removeElementFromCartAndCheckIfCartIsEmpty(at: index)
             DispatchQueue.main.async
             {
                 strongSelf.cartTableView.reloadSections([0], with: UITableView.RowAnimation.automatic)
                 strongSelf.updateTotalAmountLabel()
+                if isCartEmpty
+                {
+                    strongSelf.createCartHandlingViewWith(header: strongSelf.cartViewModel.getCartHeaderOn(cartState: CartStateEnum.empty), and: strongSelf.cartViewModel.getCartDescriptionOn(cartState: CartStateEnum.empty), withSelector: #selector(strongSelf.goToButtoonSelector))
+                }
             }
             strongSelf.testPackagesFetchRequiredClosure?(true)
         }
@@ -77,3 +82,11 @@ extension CartViewController: UITableViewDataSource
 }
 
 extension CartViewController: Storyboardable {}
+
+extension CartViewController: PurchaseCompletionOrEmptyCartViewPresenter
+{
+    @objc func goToButtoonSelector()
+    {
+        navigationController?.popViewController(animated: true)
+    }
+}

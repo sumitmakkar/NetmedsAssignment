@@ -8,11 +8,18 @@
 
 import Foundation
 
+enum CartStateEnum
+{
+    case orderCompletion
+    case empty
+}
+
 class CartViewModel
 {
     // MARK: - Properties
     private let testPackagesTableName: String = "testPackages"
     private let dbHelper                      = DBHelper()
+    private var orderPlaceString              = ""
     
     private lazy var cartDataArray: TestPackagesModel = {
         return dbHelper.readTestPackagesFromTable(tableName: testPackagesTableName)
@@ -39,17 +46,44 @@ class CartViewModel
         return "₹ \(total)"
     }
     
-    func removeElementFromCart(at index: Int)
+    func removeElementFromCartAndCheckIfCartIsEmpty(at index: Int) -> Bool
     {
-        guard let sNo = cartDataArray[index].sNo else { return }
+        guard let sNo = cartDataArray[index].sNo else { return false }
         cartDataArray.remove(at: index)
         dbHelper.deleteTestPackageFromTable(tableName: testPackagesTableName, where: " where sNo = \(sNo)")
+        return cartDataArray.isEmpty
     }
     
     func removeAllElementsFromCart()
     {
+        for (index, item) in cartDataArray.enumerated()
+        {
+            if index == 0
+            {
+                orderPlaceString += item.itemName ?? ""
+            }
+            else
+            {
+                orderPlaceString += ", \(item.itemName ?? "")"
+            }
+        }
+        orderPlaceString += " of \(getTotalAmount())"
         cartDataArray.removeAll()
         dbHelper.deleteTestPackageFromTable(tableName: testPackagesTableName)
+    }
+    
+    func getCartHeaderOn(cartState: CartStateEnum) -> String
+    {
+        return cartState == CartStateEnum.orderCompletion ? "Thank You!" : "Your cart is empty!"
+    }
+    
+    func getCartDescriptionOn(cartState: CartStateEnum) -> String
+    {
+        if cartState == CartStateEnum.empty
+        {
+            return "You have items in cart.\nPlease add items in cart."
+        }
+        return "Your order for \(orderPlaceString) has been placed successfully."
     }
 }
 
