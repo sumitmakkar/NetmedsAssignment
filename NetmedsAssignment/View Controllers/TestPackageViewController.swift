@@ -44,6 +44,7 @@ class TestPackageViewController: UIViewController
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        searchController.isActive = false
         if isFetchRequired
         {
             isFetchRequired = false
